@@ -13,7 +13,7 @@ let viteProcess = null;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 480,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
