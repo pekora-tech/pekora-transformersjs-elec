@@ -11,15 +11,7 @@
     "start": "electron .",
     "electron:dev": "electron .",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "make:dev": "npm run build && npm run electron:dev ",
-    "make:win-intel": "electron-forge make --platform win32 --arch x64",
-    "make:win-arm64": "electron-forge make --platform win32 --arch arm64",
-    "make:win": "electron-forge make --platform win32",
-    "make:mac-intel": "electron-forge make --platform darwin --arch x64",
-    "make:mac-arm64": "electron-forge make --platform darwin --arch arm64",
-    "make:mac": "electron-forge make --platform darwin",
-    "make:linux": "electron-forge make --platform linux"
+    "make": "electron-forge make"
   },
   "main": "src/main.js",
   "dependencies": {
