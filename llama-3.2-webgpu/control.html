@@ -118,8 +118,33 @@
         const openBtn = document.getElementById('openBrowser');
         const statusDiv = document.getElementById('serverStatus');
 
+        // Check if Node.js is installed
+        function checkNodeJS() {
+            try {
+                // Try to access process.version which is available in Node.js
+                if (typeof process === 'undefined' || !process.version) {
+                    statusDiv.className = 'status stopped';
+                    statusDiv.innerHTML = `Error: Node.js is not installed. Please install Node.js to use this application.<br>
+                        <a href="https://nodejs.org" style="color: inherit; text-decoration: underline;" target="_blank">Download Node.js</a>`;
+                    startBtn.disabled = true;
+                    stopBtn.disabled = true;
+                    openBtn.disabled = true;
+                    return false;
+                }
+                return true;
+            } catch (error) {
+                statusDiv.className = 'status stopped';
+                statusDiv.innerHTML = `Error: Node.js is not installed. Please install Node.js to use this application.<br>
+                    <a href="https://nodejs.org" style="color: inherit; text-decoration: underline;" target="_blank">Download Node.js</a>`;
+                startBtn.disabled = true;
+                stopBtn.disabled = true;
+                openBtn.disabled = true;
+                return false;
+            }
+        }
+
         // Initial state
-        let isServerRunning = true;
+        let isServerRunning = checkNodeJS();
         updateButtons();
 
         function updateButtons() {
@@ -131,6 +156,9 @@
         }
 
         startBtn.addEventListener('click', async () => {
+            if (!checkNodeJS()) {
+                return;
+            }
             startBtn.disabled = true;
             startBtn.classList.add('loading');
             try {
